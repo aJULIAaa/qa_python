@@ -2,6 +2,7 @@ from main import BooksCollector
 
 import pytest
 
+
 class TestBooksCollector:
 
     def test_add_new_book_add_one_book(self):
@@ -106,6 +107,4 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Пикник на обочине')
         favorites_books = collector.get_list_of_favorites_books()
         assert len(favorites_books) == 1
-
-
 
