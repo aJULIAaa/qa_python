@@ -26,30 +26,41 @@ class TestBooksCollector:
         assert collector.get_book_genre('Пикник на обочине') == "Фантастика"
 
     @pytest.mark.parametrize(
-        'name, genre, result',
+        'name, genre',
         [
-            ['Ревизор', 'Комедия', None],
-            ['Пикник на обочине', 'Роман', '']
+            ('Ревизор', 'Комедии'),
+            ('Пикник на обочине', 'Фантастика'),
         ]
     )
-    def test_set_book_genre_no_added_book_and_invalid_genre(self, name, genre, result):
+    def test_set_book_genre_no_added_books(self, name, genre):
         collector = BooksCollector()
-        collector.add_new_book('Пикник на обочине')
         collector.set_book_genre(name, genre)
-        assert collector.get_book_genre(name) == result
+        assert collector.get_book_genre(name) is None
 
     @pytest.mark.parametrize(
         'name, genre',
         [
-            ['Пикник на обочине', 'Фантастика'],
-            ['Ревизор' , 'Комедии']
+            ('Пикник на обочине', 'Роман'),
+            ('Ревизор', 'Пьеса')
         ]
     )
-    def test_get_book_genre_different_genre(self, name, genre):
+    def test_set_book_genre_not_available_genres(self, name, genre):
         collector = BooksCollector()
         collector.add_new_book(name)
         collector.set_book_genre(name, genre)
-        assert collector.get_book_genre(name) == genre
+        assert collector.get_book_genre(name) == ''
+
+    def test_get_book_genre_for_different_books(self):
+        books = {
+            'Пикник на обочине': 'Фантастика',
+            'Ревизор': 'Комедии',
+            'Русалочка': 'Мультфильмы'
+        }
+        collector = BooksCollector()
+        for name, genre in books.items():
+            collector.add_new_book(name)
+            collector.set_book_genre(name, genre)
+            assert collector.get_book_genre(name) == genre
 
     @pytest.mark.parametrize(
         'name, genre',

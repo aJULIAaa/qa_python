@@ -5,8 +5,9 @@
 - **test_add_new_book_add_one_book:** проверяет успешное добавление новой книги.
 - **test_add_new_book_long_or_empty_name:** проверяет, что книги с пустым или слишком длинным названием не добавляются.
 - **test_set_book_genre_available_genre:** проверяет установку корректного жанра для книги.
-- **test_set_book_genre_no_added_book_and_invalid_genre:** проверяет, что жанр не устанавливается для несуществующих книг или при указании несуществующего жанра.
-- **test_get_book_genre_different_genre:** проверяет получение корректного жанра книги по ее имени.
+- **def test_set_book_genre_no_added_books:** проверяет, что жанр не устанавливается, если книга не добавлена.
+- **def test_set_book_genre_not_available_genres:** проверяет, что жанр не устанавливается при указании  жанра, не входящего в список. 
+- **test_get_book_genre_for_different_books:** проверяет возвращает ли метод правильный жанр из словаря, заполненного разными книгами.
 - **test_get_books_with_specific_genre_returns_correct_books:** проверяет, что метод возвращает книги с заданным жанром.
 - **test_get_books_genre_returns_correct_genres:** проверяет, что метод возвращает правильный словарь книг и их жанров.
 - **test_get_books_for_children_not_include_age_rating:** проверяет, что книги с возрастным ограничением не включаются в список книг для детей.
